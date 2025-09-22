@@ -24,6 +24,11 @@ jobs:
       - name: Run tests with coverage
         run: pytest --cov=. --cov-report=xml --cov-report=term-missing
 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not needed for public repos
+
       - name: Generate coverage badge
         run: |
           coverage-badge -o coverage.svg -f
